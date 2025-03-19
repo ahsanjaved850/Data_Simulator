@@ -44,7 +44,7 @@ export const theme = createTheme({
           padding: "24px",
           width: "95.5%",
           "@media (min-width: 1200px)": {
-            maxWidth: "100%", // Override MUI default maxWidth
+            maxWidth: "100%",
           },
         },
       },
@@ -54,10 +54,11 @@ export const theme = createTheme({
         root: {
           display: "flex",
           flexDirection: "row",
+          alignItems: "center",
           justifyContent: "space-between",
           backgroundColor: "#F0F0F0", // Light gray navbar
           boxShadow: "none",
-          padding: "6px 60px",
+          padding: "10px 85px 10px 60px",
           position: "relative",
           height: "65px",
         },
@@ -67,6 +68,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           width: "470px",
+          height: "40px",
+          margin: "7px 0px",
           backgroundColor: "#FFF",
           borderRadius: "36px",
           borderColor: "#F0F0F0",
