@@ -39,27 +39,39 @@ export const theme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
+          display: "flex",
+          justifyContent: "space-between",
           padding: "24px",
-          maxWidth: "1200px",
+          width: "95.5%",
+          "@media (min-width: 1200px)": {
+            maxWidth: "100%", // Override MUI default maxWidth
+          },
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           backgroundColor: "#F0F0F0", // Light gray navbar
           boxShadow: "none",
-          padding: "8px 16px",
+          padding: "6px 60px",
+          position: "relative",
+          height: "65px",
         },
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
+          width: "470px",
           backgroundColor: "#FFF",
-          borderRadius: "8px",
+          borderRadius: "36px",
+          borderColor: "#F0F0F0",
           "& .MuiOutlinedInput-root": {
-            borderRadius: "8px",
+            borderRadius: "36px",
           },
         },
       },
