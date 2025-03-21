@@ -1,9 +1,14 @@
 import { Layout } from "@/components/Layout";
+import { Table } from "@/components/Table";
 import { RouteObject } from "react-router-dom";
 
 export const routes: RouteObject[] = [
   {
-    path: "/home",
-    element: <Layout></Layout>,
+    path: "/",
+    element: (
+      <Layout>
+        <Table />
+      </Layout>
+    ),
   },
 ];

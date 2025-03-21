@@ -43,6 +43,7 @@ export const theme = createTheme({
           justifyContent: "space-between",
           padding: "24px",
           width: "95.5%",
+          height: "100%",
           "@media (min-width: 1200px)": {
             maxWidth: "100%",
           },
@@ -79,11 +80,13 @@ export const theme = createTheme({
         },
       },
     },
-    MuiTableHead: {
+    MuiCssBaseline: {
       styleOverrides: {
-        root: {
-          backgroundColor: "#E0E0E0", // Light gray table header
-          fontWeight: 700,
+        "*": {
+          // Global style for all elements including Box
+          ".MuiBox-root": {
+            backgroundColor: "white",
+          },
         },
       },
     },
@@ -92,6 +95,7 @@ export const theme = createTheme({
         root: {
           textTransform: "none",
           borderRadius: "8px",
+          padding: "0px",
         },
       },
     },
