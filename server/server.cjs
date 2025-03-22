@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
@@ -17,11 +17,25 @@ async function run() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
-
+    const collection = client.db("CarsData").collection("ElectricCars");
+    //entire collection from db
     app.get("/api/cars", async (req, res) => {
-      const collection = client.db("CarsData").collection("ElectricCars");
       const cars = await collection.find({}).toArray();
       res.json(cars);
+    });
+
+    // Get single car by ID
+    app.get("/api/cars/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const car = await collection.findOne({ _id: new ObjectId(id) });
+        if (!car) {
+          return res.status(404).json({ error: "Car not found" });
+        }
+        res.json(car);
+      } catch (err) {
+        res.status(400).json({ error: "Invalid ID format" });
+      }
     });
 
     const port = process.env.PORT || 5000;
