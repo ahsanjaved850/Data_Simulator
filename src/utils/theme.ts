@@ -30,12 +30,24 @@ export const theme = createTheme({
     h3: {
       fontSize: "1.2rem",
       fontWeight: 500,
+      paddingLeft: "4px",
+    },
+    h4: {
+      fontSize: "1rem",
+      fontWeight: 400,
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: "0.8rem",
     },
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none !important",
+        },
+      },
+    },
     MuiContainer: {
       styleOverrides: {
         root: {
@@ -94,8 +106,15 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          borderRadius: "8px",
+          borderRadius: "36px",
           padding: "0px",
+          background: "white",
+          borderColor: "#F0F0F0",
+          marginLeft: "5px",
+          transition: "border 0.2s ease-in-out",
+          "&:hover": {
+            border: "1px solid black",
+          },
         },
       },
     },

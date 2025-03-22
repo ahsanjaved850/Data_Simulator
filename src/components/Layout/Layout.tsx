@@ -3,12 +3,15 @@ import { AppBar, Container, Paper, TextField } from "@mui/material";
 import nameLogo from "@/assets/nameLogo.svg";
 import logo from "@/assets/logo.svg";
 import stripLogo from "@/assets/image 5.svg";
+import { useParams } from "react-router-dom";
+import { ReturnButton } from "../Buttons/Buttons";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { id } = useParams();
   return (
     <Paper>
       <Container>
@@ -16,7 +19,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <img src={logo} alt="Logo"></img>
       </Container>
       <AppBar>
-        <TextField label="Search" size="small" variant="outlined"></TextField>
+        {id ? (
+          <ReturnButton />
+        ) : (
+          <TextField label="Search" size="small" variant="outlined" />
+        )}
         <img src={stripLogo} alt="StripLogo"></img>
       </AppBar>
       {children}
