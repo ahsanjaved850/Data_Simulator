@@ -13,7 +13,7 @@ export const routes: RouteObject[] = [
     ),
   },
   {
-    path: "/cardetails/:carid",
+    path: "/cardetails/:id",
     element: (
       <Layout>
         <CarDetails></CarDetails>

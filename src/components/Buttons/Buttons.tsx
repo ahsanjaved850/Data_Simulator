@@ -2,19 +2,21 @@
 import React from "react";
 import { DeleteOutlineOutlined, VisibilityOutlined } from "@mui/icons-material";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface ActionButtonsProps {
   id: string;
   onDelete: (id: string) => void;
-  onView: (id: string) => void;
 }
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({
   id,
   onDelete,
-  onView,
 }) => {
-  const handleView = () => onView(id);
+  const navigate = useNavigate();
+  const handleView = () => {
+    navigate(`/cardetails/${id}`);
+  };
   const handleDelete = () => onDelete(id);
 
   return (

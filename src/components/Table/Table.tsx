@@ -15,8 +15,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { ActionButtons } from "@/components/Buttons";
 import { Cars_API } from "@/utils/constants";
-import { useNavigate } from "react-router-dom";
-import { CarDetails } from "../CarDetails";
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -38,19 +36,10 @@ export const Table = <T extends { _id: string }>({
   const [generatedColumns, setGeneratedColumns] = useState<ColDef<T>[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const handleDelete = useCallback((id: string) => {
     setRowData((prev) => prev.filter((row) => row._id !== id));
   }, []);
-
-  const handleView = useCallback(
-    (id: string) => {
-      <CarDetails carId={id} />;
-      navigate(`/cardetails/${id}`);
-    },
-    [navigate]
-  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,11 +79,7 @@ export const Table = <T extends { _id: string }>({
             headerName: "Action",
             field: "_id",
             cellRenderer: (params: ICellRendererParams<T>) => (
-              <ActionButtons
-                id={params.value}
-                onDelete={handleDelete}
-                onView={handleView}
-              />
+              <ActionButtons id={params.value} onDelete={handleDelete} />
             ),
             filter: false,
             sortable: false,
@@ -109,7 +94,7 @@ export const Table = <T extends { _id: string }>({
       }
     };
     fetchData();
-  }, [handleDelete, handleView]);
+  }, [handleDelete]);
 
   if (loading) return <div>Loading data...</div>;
   if (error) return <div>Error: {error}</div>;
