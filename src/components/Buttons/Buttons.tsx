@@ -1,7 +1,7 @@
 // Buttons.tsx
 import React from "react";
 import { DeleteOutlineOutlined, VisibilityOutlined } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 interface ActionButtonsProps {
@@ -31,5 +31,21 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
 };
 
 export const ReturnButton: React.FC = () => {
-  return <div></div>;
+  const navigate = useNavigate();
+  const handleReturn = () => {
+    navigate("/");
+  };
+  return (
+    <Button
+      onClick={handleReturn}
+      sx={{
+        color: "darkgrey",
+        "&:hover": {
+          color: "text.primary",
+        },
+      }}
+    >
+      Return
+    </Button>
+  );
 };
