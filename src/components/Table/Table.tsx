@@ -15,6 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { ActionButtons } from "@/components/Buttons";
 import { Cars_API } from "@/utils/constants";
+import { LoadingPage } from "../LoadingState";
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -96,7 +97,7 @@ export const Table = <T extends { _id: string }>({
     fetchData();
   }, [handleDelete]);
 
-  if (loading) return <div>Loading data...</div>;
+  if (loading) return <LoadingPage></LoadingPage>;
   if (error) return <div>Error: {error}</div>;
 
   return (

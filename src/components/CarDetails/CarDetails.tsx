@@ -3,6 +3,7 @@ import { Typography, List, ListItem } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { DetailsGrid, StyledPaper } from "./CarDetails.style";
+import { LoadingPage } from "../LoadingState";
 
 interface Car {
   _id: string;
@@ -40,6 +41,7 @@ export const CarDetails: React.FC = () => {
     };
     fetchData();
   }, []);
+  if (carData === null) return <LoadingPage></LoadingPage>;
   return (
     <StyledPaper>
       <Typography variant="h1">{carData?.Brand}</Typography>
