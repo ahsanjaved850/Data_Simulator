@@ -24,7 +24,7 @@ export const theme = createTheme({
       fontWeight: 600,
     },
     h2: {
-      fontSize: "1.5rem",
+      fontSize: "1.3rem",
       fontWeight: 500,
     },
     h3: {
@@ -33,7 +33,7 @@ export const theme = createTheme({
       paddingLeft: "4px",
     },
     h4: {
-      fontSize: "1rem",
+      fontSize: "0.9rem",
       fontWeight: 400,
     },
     body1: {
@@ -77,17 +77,27 @@ export const theme = createTheme({
         },
       },
     },
-    MuiTextField: {
+    MuiFormControl: {
       styleOverrides: {
         root: {
-          width: "470px",
-          height: "40px",
-          margin: "7px 0px",
-          backgroundColor: "#FFF",
+          display: "flex",
+          flexDirection: "row",
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          marginLeft: "5px",
+          fontSize: "16px",
+          width: 400,
+          height: 50,
           borderRadius: "36px",
-          borderColor: "#F0F0F0",
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "36px",
+          padding: "16px",
+          backgroundColor: "white",
+          border: "1px solid #ccc",
+          "&:hover": {
+            borderColor: "#999",
           },
         },
       },
@@ -95,7 +105,6 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         "*": {
-          // Global style for all elements including Box
           ".MuiBox-root": {
             backgroundColor: "white",
           },
