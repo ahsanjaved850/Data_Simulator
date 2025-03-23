@@ -11,8 +11,7 @@
 
 ## Project Overview
 
-   This project demonstrates the development of a Generic DataGrid Application for BMW’s IT Internship Aptitude Test. The application enables dynamic data visualization, search, filtering,
-   and CRUD operations via a React frontend integrated with a Node.js/Express.js backend and MongoDB. The solution adheres strictly to BMW’s specifications, including AG Grid integration,
+   This project demonstrates the development of a Generic DataGrid Application for BMW’s IT Internship Aptitude Test. The application enables dynamic data visualization, search, filtering       and deleting features via a React frontend integrated with a Node.js/Express.js backend and MongoDB. The solution adheres strictly to BMW’s specifications, including AG Grid integration,
    Material-UI (MUI) styling, and API-driven functionality.
 
 ## Key Features
@@ -25,11 +24,11 @@
       Delete: Removes entries from the grid and database.
    
    3. Search Functionality
-      Search API: Queries the backend to fetch results by brand name (e.g., "Tesla").
+      Search API: Queries the backend to fetch results by brand name or model name (e.g., "Tesla").
       Advanced Filtering: Column-specific filters (contains, equals, starts/ends with) via AG Grid.
    
    3. Backend Integration
-      Express.js API with RESTful endpoints for data retrieval, search.
+      Express.js API with RESTful endpoints for data retrieval, search. In search using the debounce to make the API call also used the axios for making the API calls.
       MongoDB Atlas for cloud-based NoSQL data storage; CSV dataset preloaded into the database.
    
    5. User Interface
@@ -100,6 +99,8 @@
    Frontend fetches data via AG Grid from Express.js APIs.
    
    User interactions (search ) trigger API call through debounce to update the UI and making the API call process efficient.
+   
+   Axios is used for API's call.
 
    ### Git Strategy:
    
