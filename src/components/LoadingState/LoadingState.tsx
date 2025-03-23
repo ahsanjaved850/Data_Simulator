@@ -1,8 +1,8 @@
 import { CircularProgress } from "@mui/material";
-import React from "react";
+
 import { LoadingPageContainer } from "./LoadingState.style";
 
-export const LoadingPage: React.FC = () => {
+export const LoadingPage = () => {
   return (
     <LoadingPageContainer>
       <CircularProgress size={50} />
