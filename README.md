@@ -77,7 +77,8 @@
       npm install  
       
    ### Configure Environment Variables
-   If you want to run the server locally. In server/config.env add the MongoDB_URL.
+   If you want to run the server locally. In server/config.env add the MongoDB_URL in ATLAS_URI.
+   
       ATLAS_URI=[Your-MongoDB-URI]  
 
    ### Run the Application(Local Server)
