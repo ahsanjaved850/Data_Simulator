@@ -2,17 +2,19 @@
 import { Container, Paper, styled } from "@mui/material";
 
 export const StyledPaper = styled(Paper)(() => ({
-  maxWidth: 600,
+  width: 900,
+  maxWidth: 900,
   margin: "15px 46px",
   padding: "32px 24px",
 }));
 
 export const DetailsGrid = styled(Container)(() => ({
   display: "flex",
+  flex: 1,
   gap: 40,
   padding: "0 !important",
   marginTop: "24px",
-  marginLeft: "2px",
+  marginLeft: 0,
   position: "relative",
 
   "& .MuiList-root:first-of-type": {
@@ -26,8 +28,9 @@ export const DetailsGrid = styled(Container)(() => ({
   },
 
   "& .MuiListItem-root": {
+    width: 450,
     display: "flex",
-    justifyContent: "flexstart",
+    justifyContent: "space-between",
     padding: "8px 0px",
     margin: "4px 0",
   },

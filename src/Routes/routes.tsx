@@ -1,5 +1,6 @@
 import { CarDetails } from "@/components/CarDetails";
 import { Layout } from "@/components/Layout";
+import { SearchTable } from "@/components/SearchTable";
 import { Table } from "@/components/Table";
 import { RouteObject } from "react-router-dom";
 
@@ -8,7 +9,7 @@ export const routes: RouteObject[] = [
     path: "/",
     element: (
       <Layout>
-        <Table />
+        <Table name={undefined} />
       </Layout>
     ),
   },
@@ -16,7 +17,15 @@ export const routes: RouteObject[] = [
     path: "/cardetails/:id",
     element: (
       <Layout>
-        <CarDetails></CarDetails>
+        <CarDetails />
+      </Layout>
+    ),
+  },
+  {
+    path: "/search/:brandname",
+    element: (
+      <Layout>
+        <SearchTable />
       </Layout>
     ),
   },

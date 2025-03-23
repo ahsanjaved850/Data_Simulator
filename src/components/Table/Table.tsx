@@ -14,7 +14,8 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { ActionButtons } from "@/components/Buttons";
-import { Cars_API } from "@/utils/constants";
+import { Cars_API, SearchCars_API } from "@/utils/constants";
+import { LoadingPage } from "../LoadingState";
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -27,28 +28,40 @@ ModuleRegistry.registerModules([
 
 interface TableProps<T extends { _id: string }> {
   columns?: ColDef<T>[];
+  name: string | undefined;
 }
 
 export const Table = <T extends { _id: string }>({
   columns,
+  name,
 }: TableProps<T>) => {
   const [rowData, setRowData] = useState<T[]>([]);
-  const [generatedColumns, setGeneratedColumns] = useState<ColDef<T>[]>([]);
+  const [columnData, setColumnData] = useState<ColDef<T>[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const handleDelete = useCallback((id: string) => {
     setRowData((prev) => prev.filter((row) => row._id !== id));
   }, []);
+  console.log(name);
 
   useEffect(() => {
     const fetchData = async () => {
+      let data;
       try {
-        const response = await fetch(Cars_API);
-        if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-
+        if (name) {
+          const response = await fetch(
+            SearchCars_API + `${encodeURIComponent(name.trim())}`
+          );
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+          data = await response.json();
+        } else {
+          const response = await fetch(Cars_API);
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+          data = await response.json();
+        }
         setRowData(data);
 
         const newColumns =
@@ -86,7 +99,7 @@ export const Table = <T extends { _id: string }>({
             minWidth: 120,
           });
         }
-        setGeneratedColumns(newColumns as ColDef<T>[]);
+        setColumnData(newColumns as ColDef<T>[]);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch");
       } finally {
@@ -94,9 +107,9 @@ export const Table = <T extends { _id: string }>({
       }
     };
     fetchData();
-  }, [handleDelete]);
+  }, [handleDelete, name]);
 
-  if (loading) return <div>Loading data...</div>;
+  if (loading) return <LoadingPage></LoadingPage>;
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -111,7 +124,7 @@ export const Table = <T extends { _id: string }>({
     >
       <AgGridReact<T>
         rowData={rowData}
-        columnDefs={columns || generatedColumns}
+        columnDefs={columns || columnData}
         getRowId={(params) => params.data._id}
         modules={[ClientSideRowModelModule, ValidationModule]}
         defaultColDef={{

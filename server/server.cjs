@@ -24,6 +24,23 @@ async function run() {
       res.json(cars);
     });
 
+    // Get cars by Brand Name
+    app.get("/api/cars/search", async (req, res) => {
+      try {
+        const { brand } = req.query;
+        if (!brand) {
+          // ADD VALIDATION
+          return res.status(400).json({ error: "Missing brand parameter" });
+        }
+        const cars = await collection
+          .find({ Brand: new RegExp(brand.trim(), "i") }) // Trim whitespace
+          .toArray();
+        res.json(cars);
+      } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
+      }
+    });
+
     // Get single car by ID
     app.get("/api/cars/:id", async (req, res) => {
       try {
