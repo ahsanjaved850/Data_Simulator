@@ -69,14 +69,14 @@ export const theme = createTheme({
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#F0F0F0", // Light gray navbar
+          backgroundColor: "white", // Light gray navbar
           boxShadow: "none",
           padding: "10px 85px 10px 60px",
           position: "relative",
-          height: "65px",
         },
       },
     },
+
     MuiFormControl: {
       styleOverrides: {
         root: {
