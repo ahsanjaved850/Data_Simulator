@@ -27,14 +27,13 @@ async function run() {
     // Get cars by Brand Name
     app.get("/api/cars/search", async (req, res) => {
       try {
-        const { brand } = req.query;
-        if (!brand) {
-          // ADD VALIDATION
-          return res.status(400).json({ error: "Missing brand parameter" });
-        }
-        const cars = await collection
-          .find({ Brand: new RegExp(brand.trim(), "i") })
-          .toArray();
+        const { q } = req.query;
+        const searchRegex = new RegExp(q.trim(), "i");
+
+        const query = {
+          $or: [{ Brand: searchRegex }, { Model: searchRegex }],
+        };
+        const cars = await collection.find(query).toArray();
         res.json(cars);
       } catch (err) {
         res.status(500).json({ error: "Internal server error" });

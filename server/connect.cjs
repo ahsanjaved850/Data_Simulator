@@ -11,7 +11,7 @@ async function main() {
     const collections = await client.db("CarsData").collections();
 
     collections.forEach((collection) =>
-      console.log(collection.s.namespace.collection)
+      console.log(collection.s.namespace.collection),
     );
   } catch (e) {
     console.error(e);

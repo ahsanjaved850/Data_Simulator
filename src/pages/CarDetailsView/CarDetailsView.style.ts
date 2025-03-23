@@ -1,4 +1,3 @@
-// CarDetails.style.ts
 import { Container, Paper, styled } from "@mui/material";
 
 export const StyledPaper = styled(Paper)(() => ({

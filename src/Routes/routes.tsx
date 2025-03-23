@@ -1,31 +1,23 @@
-import { CarDetails } from "@/components/CarDetails";
-import { Layout } from "@/components/Layout";
-import { SearchTable } from "@/components/SearchTable";
-import { Table } from "@/components/Table";
 import { RouteObject } from "react-router-dom";
+
+import { Layout } from "@/components/Layout";
+import { CarDetailsView } from "@/pages/CarDetailsView";
+import { TableView } from "@/pages/TableView/TableView";
 
 export const routes: RouteObject[] = [
   {
     path: "/",
     element: (
       <Layout>
-        <Table name={undefined} />
+        <TableView />
       </Layout>
     ),
   },
   {
-    path: "/cardetails/:id",
+    path: "/car-details/:id",
     element: (
       <Layout>
-        <CarDetails />
-      </Layout>
-    ),
-  },
-  {
-    path: "/search/:brandname",
-    element: (
-      <Layout>
-        <SearchTable />
+        <CarDetailsView />
       </Layout>
     ),
   },
