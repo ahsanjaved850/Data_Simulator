@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
 
-// Validate environment variables
 if (!process.env.ATLAS_URI) {
   throw new Error("Missing ATLAS_URI in environment variables");
 }
@@ -18,6 +17,7 @@ async function run() {
     await client.connect();
     console.log("Connected to MongoDB");
     const collection = client.db("CarsData").collection("ElectricCars");
+
     //entire collection from db
     app.get("/api/cars", async (req, res) => {
       const cars = await collection.find({}).toArray();
@@ -33,7 +33,7 @@ async function run() {
           return res.status(400).json({ error: "Missing brand parameter" });
         }
         const cars = await collection
-          .find({ Brand: new RegExp(brand.trim(), "i") }) // Trim whitespace
+          .find({ Brand: new RegExp(brand.trim(), "i") })
           .toArray();
         res.json(cars);
       } catch (err) {

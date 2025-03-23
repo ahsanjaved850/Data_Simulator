@@ -78,7 +78,6 @@ export const Table = <T extends { _id: string }>({
                 }))
             : [
                 {
-                  // Fallback column when no data exists
                   field: "noData",
                   headerName: "Information",
                   valueGetter: () => "No data available",
