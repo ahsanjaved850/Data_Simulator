@@ -1,0 +1,1208 @@
+diff --git a/README.md b/README.md
+index ae5a2e9..f5203e3 100644
+--- a/README.md
++++ b/README.md
+@@ -2,91 +2,91 @@
+ 
+ ## Table of Contents
+ 
+-   - Project Overview
+-   - Key Features
+-   - Technical Implementation
+-   - Setup & Installation
+-   - Architecture & Workflow
+-   - Compliance with BMW Requirements
+-   - Deliverables Submitted
+-   - Next Steps
+-   - Contact
++- Project Overview
++- Key Features
++- Technical Implementation
++- Setup & Installation
++- Architecture & Workflow
++- Compliance with BMW Requirements
++- Deliverables Submitted
++- Next Steps
++- Contact
+ 
+ ## Project Overview
+ 
+-   This project demonstrates the development of a Generic DataGrid Application for BMW’s IT Internship Aptitude Test. The application enables dynamic data visualization, search, filtering,
+-   and CRUD operations via a React frontend integrated with a Node.js/Express.js backend and MongoDB. The solution adheres strictly to BMW’s specifications, including AG Grid integration,
+-   Material-UI (MUI) styling, and API-driven functionality.
++This project demonstrates the development of a Generic DataGrid Application for BMW’s IT Internship Aptitude Test. The application enables dynamic data visualization, search, filtering,
++and CRUD operations via a React frontend integrated with a Node.js/Express.js backend and MongoDB. The solution adheres strictly to BMW’s specifications, including AG Grid integration,
++Material-UI (MUI) styling, and API-driven functionality.
+ 
+ ## Key Features
+ 
+-   1. Dynamic DataGrid Component
+-      Built with AG Grid React for scalable data rendering.
+-      Supports N-column structural data with resizable, sortable, and filterable columns.
+-      Includes a default "Actions" column with:
+-      View: Navigates to a details page with comprehensive row data.
+-      Delete: Removes entries from the grid and database.
+-   
+-   3. Search Functionality
+-      Search API: Queries the backend to fetch results by brand name (e.g., "Tesla").
+-      Advanced Filtering: Column-specific filters (contains, equals, starts/ends with) via AG Grid.
+-   
+-   3. Backend Integration
+-      Express.js API with RESTful endpoints for data retrieval, search.
+-      MongoDB Atlas for cloud-based NoSQL data storage; CSV dataset preloaded into the database.
+-   
+-   5. User Interface
+-      Material-UI (MUI): Themed components for consistent styling (buttons, forms, layouts).
+-      Responsive Design: Optimized for desktop and tablet viewing.
+-      Navigation: Seamless routing between DataGrid and details page with a dedicated "Return" button.
+-   
+-   5. DevOps & Version Control
+-      GitHub Repository: Codebase organized into feature branches (layout, table, backend, CarDetails, Searching, addData).
++1.  Dynamic DataGrid Component
++    Built with AG Grid React for scalable data rendering.
++    Supports N-column structural data with resizable, sortable, and filterable columns.
++    Includes a default "Actions" column with:
++    View: Navigates to a details page with comprehensive row data.
++    Delete: Removes entries from the grid and database.
++
++2.  Search Functionality
++    Search API: Queries the backend to fetch results by brand name (e.g., "Tesla").
++    Advanced Filtering: Column-specific filters (contains, equals, starts/ends with) via AG Grid.
++
++3.  Backend Integration
++    Express.js API with RESTful endpoints for data retrieval, search.
++    MongoDB Atlas for cloud-based NoSQL data storage; CSV dataset preloaded into the database.
++
++4.  User Interface
++    Material-UI (MUI): Themed components for consistent styling (buttons, forms, layouts).
++    Responsive Design: Optimized for desktop and tablet viewing.
++    Navigation: Seamless routing between DataGrid and details page with a dedicated "Return" button.
++
++5.  DevOps & Version Control
++    GitHub Repository: Codebase organized into feature branches (layout, table, backend, CarDetails, Searching, addData).
+ 
+ ## Technical Implementation
+ 
+-   ### Frontend
++### Frontend
++
++Framework: React (TypeScript) via Vite.
+ 
+-   Framework: React (TypeScript) via Vite.
+-   
+-   Libraries: AG Grid, Material-UI, React Router.
+-   
+-   State Management: React Hooks (useState, useEffect, useCallback).
++Libraries: AG Grid, Material-UI, React Router.
+ 
+-   ### Backend
++State Management: React Hooks (useState, useEffect, useCallback).
+ 
+-   Runtime: Node.js with Express.js.
+-   
+-   Database: MongoDB Atlas (NoSQL).
+-   
+-   Middleware: cors, dotenv, mongoose.
++### Backend
+ 
+-   ### APIs
++Runtime: Node.js with Express.js.
+ 
+-   Endpoint Method Description
+-   /api/data GET Fetch all data
+-   /api/search/:brand GET Search by brand name
++Database: MongoDB Atlas (NoSQL).
++
++Middleware: cors, dotenv, mongoose.
++
++### APIs
++
++Endpoint Method Description
++/api/data GET Fetch all data
++/api/search/:brand GET Search by brand name
+ 
+ ## Architecture & Workflow
+ 
+-   System Architecture Diagram Include a diagram here if available.
+-   
+-   ### Data Flow:
+-   
+-   CSV data uploaded to MongoDB via a seeding script.
+-   
+-   Frontend fetches data via AG Grid from Express.js APIs.
+-   
+-   User interactions (search, filter, delete) trigger API calls to update the UI.
+-
+-   ### Git Strategy:
+-   
+-   Feature branches for modular development.
+-   
+-   main branch reserved for stable releases.
+-   
++System Architecture Diagram Include a diagram here if available.
++
++### Data Flow:
++
++CSV data uploaded to MongoDB via a seeding script.
++
++Frontend fetches data via AG Grid from Express.js APIs.
++
++User interactions (search, filter, delete) trigger API calls to update the UI.
++
++### Git Strategy:
++
++Feature branches for modular development.
++
++main branch reserved for stable releases.
++
+ ## Contact
+-   
+-   For queries or further discussion, please contact:
+-   Name: Ahsan Javed
+-   Email: jahsan850@gmail.com
++
++For queries or further discussion, please contact:
++Name: Ahsan Javed
++Email: jahsan850@gmail.com
+diff --git a/eslint.config.js b/eslint.config.js
+index 092408a..7b3fbe9 100644
+--- a/eslint.config.js
++++ b/eslint.config.js
+@@ -1,28 +1,53 @@
+-import js from '@eslint/js'
+-import globals from 'globals'
+-import reactHooks from 'eslint-plugin-react-hooks'
+-import reactRefresh from 'eslint-plugin-react-refresh'
+-import tseslint from 'typescript-eslint'
++import js from "@eslint/js";
++import globals from "globals";
++import reactHooks from "eslint-plugin-react-hooks";
++import reactRefresh from "eslint-plugin-react-refresh";
++import tseslint from "typescript-eslint";
++import importPlugin from "eslint-plugin-import";
+ 
+ export default tseslint.config(
+-  { ignores: ['dist'] },
++  { ignores: ["dist"] },
+   {
+     extends: [js.configs.recommended, ...tseslint.configs.recommended],
+-    files: ['**/*.{ts,tsx}'],
++    files: ["**/*.{ts,tsx}"],
+     languageOptions: {
+       ecmaVersion: 2020,
+       globals: globals.browser,
+     },
+     plugins: {
+-      'react-hooks': reactHooks,
+-      'react-refresh': reactRefresh,
++      "react-hooks": reactHooks,
++      "react-refresh": reactRefresh,
++      import: importPlugin,
+     },
+     rules: {
+       ...reactHooks.configs.recommended.rules,
+-      'react-refresh/only-export-components': [
+-        'warn',
++      "react-refresh/only-export-components": [
++        "warn",
+         { allowConstantExport: true },
+       ],
++      "import/order": [
++        "warn",
++        {
++          groups: [
++            "builtin",
++            "external",
++            "internal",
++            "parent",
++            "sibling",
++            "index",
++          ],
++          "newlines-between": "always",
++          alphabetize: { order: "asc", caseInsensitive: true },
++          pathGroups: [
++            {
++              pattern: "@/**",
++              group: "internal",
++              position: "after",
++            },
++          ],
++          pathGroupsExcludedImportTypes: ["builtin"],
++        },
++      ],
+     },
+   },
+-)
++);
+diff --git a/package.json b/package.json
+index a4177f4..c22c6bd 100644
+--- a/package.json
++++ b/package.json
+@@ -16,6 +16,7 @@
+     "@mui/icons-material": "^6.4.8",
+     "@mui/material": "^6.4.8",
+     "ag-grid-react": "^33.1.1",
++    "axios": "^1.8.4",
+     "cors": "^2.8.5",
+     "csv-parser": "^3.2.0",
+     "dotenv": "^16.4.7",
+@@ -32,6 +33,7 @@
+     "@vitejs/plugin-react": "^4.3.4",
+     "eslint": "^9.22.0",
+     "eslint-config-prettier": "^10.1.1",
++    "eslint-plugin-import": "^2.31.0",
+     "eslint-plugin-prettier": "^5.2.3",
+     "eslint-plugin-react": "^7.37.4",
+     "eslint-plugin-react-hooks": "^5.2.0",
+diff --git a/server/connect.cjs b/server/connect.cjs
+index a1b1178..5ae4c42 100644
+--- a/server/connect.cjs
++++ b/server/connect.cjs
+@@ -11,7 +11,7 @@ async function main() {
+     const collections = await client.db("CarsData").collections();
+ 
+     collections.forEach((collection) =>
+-      console.log(collection.s.namespace.collection)
++      console.log(collection.s.namespace.collection),
+     );
+   } catch (e) {
+     console.error(e);
+diff --git a/server/server.cjs b/server/server.cjs
+index 21e2e56..ff13320 100644
+--- a/server/server.cjs
++++ b/server/server.cjs
+@@ -27,14 +27,13 @@ async function run() {
+     // Get cars by Brand Name
+     app.get("/api/cars/search", async (req, res) => {
+       try {
+-        const { brand } = req.query;
+-        if (!brand) {
+-          // ADD VALIDATION
+-          return res.status(400).json({ error: "Missing brand parameter" });
+-        }
+-        const cars = await collection
+-          .find({ Brand: new RegExp(brand.trim(), "i") })
+-          .toArray();
++        const { q } = req.query;
++        const searchRegex = new RegExp(q.trim(), "i");
++
++        const query = {
++          $or: [{ Brand: searchRegex }, { Model: searchRegex }],
++        };
++        const cars = await collection.find(query).toArray();
+         res.json(cars);
+       } catch (err) {
+         res.status(500).json({ error: "Internal server error" });
+diff --git a/src/App.tsx b/src/App.tsx
+index e1f9ea5..7bec3cd 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,8 +1,9 @@
+ import React from "react";
+ import { createBrowserRouter, RouterProvider } from "react-router-dom";
+-import { routes } from "./Routes/routes";
++
++import { routes } from "./routes/routes";
+ 
+ export const App: React.FC = () => {
+-  const appRouter = createBrowserRouter(routes);
+-  return <RouterProvider router={appRouter}></RouterProvider>;
++	const appRouter = createBrowserRouter(routes);
++	return <RouterProvider router={appRouter}></RouterProvider>;
+ };
+diff --git a/src/Routes/routes.tsx b/src/Routes/routes.tsx
+index c4ae4bd..83b39ec 100644
+--- a/src/Routes/routes.tsx
++++ b/src/Routes/routes.tsx
+@@ -1,31 +1,23 @@
+-import { CarDetails } from "@/components/CarDetails";
+-import { Layout } from "@/components/Layout";
+-import { SearchTable } from "@/components/SearchTable";
+-import { Table } from "@/components/Table";
+ import { RouteObject } from "react-router-dom";
+ 
++import { CarDetailsView } from "@/pages/CarDetailsView";
++import { Layout } from "@/components/Layout";
++import { TableView } from "@/pages/TableView/TableView";
++
+ export const routes: RouteObject[] = [
+   {
+     path: "/",
+     element: (
+       <Layout>
+-        <Table name={undefined} />
+-      </Layout>
+-    ),
+-  },
+-  {
+-    path: "/cardetails/:id",
+-    element: (
+-      <Layout>
+-        <CarDetails />
++        <TableView />
+       </Layout>
+     ),
+   },
+   {
+-    path: "/search/:brandname",
++    path: "/car-details/:id",
+     element: (
+       <Layout>
+-        <SearchTable />
++        <CarDetailsView />
+       </Layout>
+     ),
+   },
+diff --git a/src/components/Buttons/Buttons.tsx b/src/components/Buttons/Buttons.tsx
+deleted file mode 100644
+index 80bcb61..0000000
+--- a/src/components/Buttons/Buttons.tsx
++++ /dev/null
+@@ -1,74 +0,0 @@
+-import React from "react";
+-import { DeleteOutlineOutlined, VisibilityOutlined } from "@mui/icons-material";
+-import { Box, Button } from "@mui/material";
+-import { useNavigate } from "react-router-dom";
+-
+-interface ActionButtonsProps {
+-  id: string;
+-  onDelete: (id: string) => void;
+-}
+-
+-export const ActionButtons: React.FC<ActionButtonsProps> = ({
+-  id,
+-  onDelete,
+-}) => {
+-  const navigate = useNavigate();
+-
+-  const handleView = () => {
+-    navigate(`/cardetails/${id}`);
+-  };
+-  const handleDelete = () => onDelete(id);
+-
+-  return (
+-    <Box
+-      sx={{
+-        display: "flex",
+-        alignItems: "center",
+-        paddingTop: 1,
+-      }}
+-    >
+-      <VisibilityOutlined
+-        sx={{
+-          cursor: "pointer",
+-          "&:hover": {
+-            backgroundColor: "secondary.main",
+-            borderRadius: "50px",
+-          },
+-        }}
+-        onClick={handleView}
+-      />
+-      <DeleteOutlineOutlined
+-        sx={{
+-          marginLeft: 1.5,
+-          cursor: "pointer",
+-          "&:hover": {
+-            backgroundColor: "secondary.main",
+-            borderRadius: "50px",
+-          },
+-        }}
+-        onClick={handleDelete}
+-      />
+-    </Box>
+-  );
+-};
+-
+-export const ReturnButton: React.FC = () => {
+-  const navigate = useNavigate();
+-  const handleReturn = () => {
+-    navigate("/");
+-  };
+-  return (
+-    <Button
+-      onClick={handleReturn}
+-      sx={{
+-        color: "black",
+-        height: "45px",
+-        "&:hover": {
+-          color: "text.primary",
+-        },
+-      }}
+-    >
+-      Return
+-    </Button>
+-  );
+-};
+diff --git a/src/components/Buttons/index.ts b/src/components/Buttons/index.ts
+deleted file mode 100644
+index 6589e00..0000000
+--- a/src/components/Buttons/index.ts
++++ /dev/null
+@@ -1 +0,0 @@
+-export { ActionButtons, ReturnButton } from "./Buttons";
+diff --git a/src/components/CarDetails/CarDetails.style.ts b/src/components/CarDetails/CarDetails.style.ts
+deleted file mode 100644
+index 192dec0..0000000
+--- a/src/components/CarDetails/CarDetails.style.ts
++++ /dev/null
+@@ -1,37 +0,0 @@
+-// CarDetails.style.ts
+-import { Container, Paper, styled } from "@mui/material";
+-
+-export const StyledPaper = styled(Paper)(() => ({
+-  width: 900,
+-  maxWidth: 900,
+-  margin: "15px 46px",
+-  padding: "32px 24px",
+-}));
+-
+-export const DetailsGrid = styled(Container)(() => ({
+-  display: "flex",
+-  flex: 1,
+-  gap: 40,
+-  padding: "0 !important",
+-  marginTop: "24px",
+-  marginLeft: 0,
+-  position: "relative",
+-
+-  "& .MuiList-root:first-of-type": {
+-    paddingRight: 40,
+-    borderRight: "1px solid",
+-  },
+-
+-  "& .MuiList-root": {
+-    flex: 1,
+-    padding: 0,
+-  },
+-
+-  "& .MuiListItem-root": {
+-    width: 450,
+-    display: "flex",
+-    justifyContent: "space-between",
+-    padding: "8px 0px",
+-    margin: "4px 0",
+-  },
+-}));
+diff --git a/src/components/CarDetails/CarDetails.tsx b/src/components/CarDetails/CarDetails.tsx
+deleted file mode 100644
+index 9dd0049..0000000
+--- a/src/components/CarDetails/CarDetails.tsx
++++ /dev/null
+@@ -1,117 +0,0 @@
+-import { CarDetails_API } from "@/utils/constants";
+-import { Typography, List, ListItem } from "@mui/material";
+-import React, { useEffect, useState } from "react";
+-import { useParams } from "react-router-dom";
+-import { DetailsGrid, StyledPaper } from "./CarDetails.style";
+-import { LoadingPage } from "../LoadingState";
+-
+-interface Car {
+-  _id: string;
+-  Brand: string;
+-  Model: string;
+-  AccelSec: string;
+-  TopSpeed_KmH: string;
+-  Range_Km: string;
+-  Efficiency_WhKm: string;
+-  FastCharge_KmH: string;
+-  RapidCharge: string;
+-  PowerTrain: string;
+-  PlugType: string;
+-  BodyStyle: string;
+-  Segment: string;
+-  Seats: string;
+-  PriceEuro: string;
+-  Date: string;
+-}
+-
+-export const CarDetails: React.FC = () => {
+-  const { id } = useParams();
+-  const [carData, setCarData] = useState<Car | null>(null);
+-
+-  useEffect(() => {
+-    const fetchData = async () => {
+-      try {
+-        const response = await fetch(CarDetails_API + `${id}`);
+-        if (!response.ok) throw new Error("Car not found");
+-        const data: Car = await response.json();
+-        setCarData(data);
+-      } catch (error) {
+-        console.error("Error fetching car:", error);
+-      }
+-    };
+-    fetchData();
+-  }, []);
+-  if (carData === null) return <LoadingPage></LoadingPage>;
+-  return (
+-    <StyledPaper>
+-      <Typography variant="h1">{carData?.Brand}</Typography>
+-
+-      <DetailsGrid>
+-        <List>
+-          <ListItem>
+-            <Typography variant="h4">Model:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.Model}
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Accel Sec:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.AccelSec}
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Fast Charge:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.FastCharge_KmH}kmH
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Body Style:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.BodyStyle}
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Power Train:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.PowerTrain}
+-            </Typography>
+-          </ListItem>
+-        </List>
+-        <List>
+-          <ListItem>
+-            <Typography variant="h4">Range:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.Range_Km}km
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Top Speed:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.TopSpeed_KmH}km/h
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Fast Charge:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.RapidCharge}
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Segment:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.Segment}
+-            </Typography>
+-          </ListItem>
+-          <ListItem>
+-            <Typography variant="h4">Price:</Typography>
+-            <Typography variant="h2" fontWeight="bold">
+-              {carData?.PriceEuro}€
+-            </Typography>
+-          </ListItem>
+-        </List>
+-      </DetailsGrid>
+-    </StyledPaper>
+-  );
+-};
+diff --git a/src/components/CarDetails/index.ts b/src/components/CarDetails/index.ts
+deleted file mode 100644
+index 2e6495c..0000000
+--- a/src/components/CarDetails/index.ts
++++ /dev/null
+@@ -1 +0,0 @@
+-export { CarDetails } from "./CarDetails";
+diff --git a/src/components/Layout/Layout.tsx b/src/components/Layout/Layout.tsx
+index 0901e25..2652edc 100644
+--- a/src/components/Layout/Layout.tsx
++++ b/src/components/Layout/Layout.tsx
+@@ -1,86 +1,29 @@
+-import React, { ReactNode, useState } from "react";
+-import {
+-  AppBar,
+-  Button,
+-  Container,
+-  FormControl,
+-  Input,
+-  Paper,
+-} from "@mui/material";
+-import nameLogo from "@/assets/nameLogo.svg";
+ import logo from "@/assets/logo.svg";
+-import stripLogo from "@/assets/image 5.svg";
+-import { useNavigate, useParams } from "react-router-dom";
+-import { ReturnButton } from "../Buttons/Buttons";
+-import { SearchOutlined } from "@mui/icons-material";
++import nameLogo from "@/assets/nameLogo.svg";
++import { AppBar, Container, Paper } from "@mui/material";
++import React, { ReactNode } from "react";
++import { useLayout } from "./Layout.logic";
+ 
+ interface LayoutProps {
+-  children: ReactNode;
++	children: ReactNode;
+ }
+ 
+ export const Layout: React.FC<LayoutProps> = ({ children }) => {
+-  const { id } = useParams();
+-  const navigate = useNavigate();
+-  const [inputValue, setInputValue] = useState<string>("");
+-
+-  const handleNavigate = () => {
+-    navigate("/");
+-  };
+-
+-  const handleSearch = () => {
+-    if (inputValue.trim()) {
+-      navigate(`/search/${inputValue.trim()}`);
+-    }
+-  };
++	const { goToHomePage } = useLayout();
+ 
+-  const handleFormSubmit = (e: React.FormEvent) => {
+-    e.preventDefault();
+-    handleSearch();
+-  };
++	return (
++		<Paper>
++			<AppBar>
++				<img
++					src={nameLogo}
++					alt="Namelogo"
++					onClick={goToHomePage}
++					style={{ cursor: "pointer" }}
++				/>
++				<img src={logo} alt="Logo" />
++			</AppBar>
+ 
+-  return (
+-    <Paper>
+-      <Container>
+-        <img
+-          src={nameLogo}
+-          alt="Namelogo"
+-          onClick={handleNavigate}
+-          style={{ cursor: "pointer" }}
+-        />
+-        <img src={logo} alt="Logo" />
+-      </Container>
+-      <AppBar>
+-        {id ? (
+-          <ReturnButton />
+-        ) : (
+-          <FormControl component="form" onSubmit={handleFormSubmit}>
+-            <Input
+-              value={inputValue}
+-              onChange={(e) => setInputValue(e.target.value)}
+-              placeholder="Search by Brand Name"
+-              type="text"
+-              disableUnderline={true}
+-            />
+-            <Button
+-              type="submit"
+-              disabled={!inputValue.trim()}
+-              sx={{
+-                backgroundColor: "#F0F0F0",
+-                color: "black",
+-                size: "45px",
+-                "&:disabled": {
+-                  opacity: 0.7,
+-                  cursor: "not-allowed",
+-                },
+-              }}
+-            >
+-              <SearchOutlined />
+-            </Button>
+-          </FormControl>
+-        )}
+-        <img src={stripLogo} alt="StripLogo" />
+-      </AppBar>
+-      {children}
+-    </Paper>
+-  );
++			<Container>{children}</Container>
++		</Paper>
++	);
+ };
+diff --git a/src/components/LoadingState/LoadingState.tsx b/src/components/LoadingState/LoadingState.tsx
+index c891338..2d85353 100644
+--- a/src/components/LoadingState/LoadingState.tsx
++++ b/src/components/LoadingState/LoadingState.tsx
+@@ -1,11 +1,10 @@
+ import { CircularProgress } from "@mui/material";
+-import React from "react";
+ import { LoadingPageContainer } from "./LoadingState.style";
+ 
+-export const LoadingPage: React.FC = () => {
+-  return (
+-    <LoadingPageContainer>
+-      <CircularProgress size={50} />
+-    </LoadingPageContainer>
+-  );
++export const LoadingPage = () => {
++	return (
++		<LoadingPageContainer>
++			<CircularProgress size={50} />
++		</LoadingPageContainer>
++	);
+ };
+diff --git a/src/components/SearchTable/SearchTable.tsx b/src/components/SearchTable/SearchTable.tsx
+deleted file mode 100644
+index 7dc4a86..0000000
+--- a/src/components/SearchTable/SearchTable.tsx
++++ /dev/null
+@@ -1,9 +0,0 @@
+-import React from "react";
+-import { useParams } from "react-router-dom";
+-import { Table } from "../Table";
+-
+-export const SearchTable: React.FC = () => {
+-  const { brandname } = useParams();
+-
+-  return <Table name={brandname}></Table>;
+-};
+diff --git a/src/components/SearchTable/index.ts b/src/components/SearchTable/index.ts
+deleted file mode 100644
+index 65bd367..0000000
+--- a/src/components/SearchTable/index.ts
++++ /dev/null
+@@ -1 +0,0 @@
+-export { SearchTable } from "./SearchTable";
+diff --git a/src/components/Table/Table.tsx b/src/components/Table/Table.tsx
+deleted file mode 100644
+index e0a5fd5..0000000
+--- a/src/components/Table/Table.tsx
++++ /dev/null
+@@ -1,140 +0,0 @@
+-import "ag-grid-community/styles/ag-theme-quartz.css";
+-import { AgGridReact } from "ag-grid-react";
+-import {
+-  ClientSideRowModelModule,
+-  ColDef,
+-  DateFilterModule,
+-  ModuleRegistry,
+-  NumberFilterModule,
+-  TextFilterModule,
+-  ValidationModule,
+-  CustomFilterModule,
+-  ICellRendererParams,
+-} from "ag-grid-community";
+-import { useCallback, useEffect, useState } from "react";
+-import { Box } from "@mui/material";
+-import { ActionButtons } from "@/components/Buttons";
+-import { Cars_API, SearchCars_API } from "@/utils/constants";
+-import { LoadingPage } from "../LoadingState";
+-
+-ModuleRegistry.registerModules([
+-  ClientSideRowModelModule,
+-  ValidationModule,
+-  TextFilterModule,
+-  NumberFilterModule,
+-  DateFilterModule,
+-  CustomFilterModule,
+-]);
+-
+-interface TableProps<T extends { _id: string }> {
+-  columns?: ColDef<T>[];
+-  name: string | undefined;
+-}
+-
+-export const Table = <T extends { _id: string }>({
+-  columns,
+-  name,
+-}: TableProps<T>) => {
+-  const [rowData, setRowData] = useState<T[]>([]);
+-  const [columnData, setColumnData] = useState<ColDef<T>[]>([]);
+-  const [loading, setLoading] = useState<boolean>(true);
+-  const [error, setError] = useState<string | null>(null);
+-
+-  const handleDelete = useCallback((id: string) => {
+-    setRowData((prev) => prev.filter((row) => row._id !== id));
+-  }, []);
+-  console.log(name);
+-
+-  useEffect(() => {
+-    const fetchData = async () => {
+-      let data;
+-      try {
+-        if (name) {
+-          const response = await fetch(
+-            SearchCars_API + `${encodeURIComponent(name.trim())}`
+-          );
+-          if (!response.ok)
+-            throw new Error(`HTTP error! status: ${response.status}`);
+-          data = await response.json();
+-        } else {
+-          const response = await fetch(Cars_API);
+-          if (!response.ok)
+-            throw new Error(`HTTP error! status: ${response.status}`);
+-          data = await response.json();
+-        }
+-        setRowData(data);
+-
+-        const newColumns =
+-          data.length > 0
+-            ? Object.keys(data[0])
+-                .filter((key) => key !== "_id")
+-                .map((key) => ({
+-                  field: key,
+-                  headerName: key.replace(/_/g, " "),
+-                  filter: true,
+-                  sortable: true,
+-                  resizable: true,
+-                  flex: 1,
+-                }))
+-            : [
+-                {
+-                  field: "noData",
+-                  headerName: "Information",
+-                  valueGetter: () => "No data available",
+-                  filter: false,
+-                  sortable: false,
+-                },
+-              ];
+-        // Add action column only if there's data
+-        if (data.length > 0) {
+-          newColumns.unshift({
+-            headerName: "Action",
+-            field: "_id",
+-            cellRenderer: (params: ICellRendererParams<T>) => (
+-              <ActionButtons id={params.value} onDelete={handleDelete} />
+-            ),
+-            filter: false,
+-            sortable: false,
+-            minWidth: 120,
+-          });
+-        }
+-        setColumnData(newColumns as ColDef<T>[]);
+-      } catch (err) {
+-        setError(err instanceof Error ? err.message : "Failed to fetch");
+-      } finally {
+-        setLoading(false);
+-      }
+-    };
+-    fetchData();
+-  }, [handleDelete, name]);
+-
+-  if (loading) return <LoadingPage></LoadingPage>;
+-  if (error) return <div>Error: {error}</div>;
+-
+-  return (
+-    <Box
+-      style={{
+-        height: 580,
+-        padding: 24,
+-        width: "93.5%",
+-        margin: "0px 42px",
+-        marginTop: 0,
+-      }}
+-    >
+-      <AgGridReact<T>
+-        rowData={rowData}
+-        columnDefs={columns || columnData}
+-        getRowId={(params) => params.data._id}
+-        modules={[ClientSideRowModelModule, ValidationModule]}
+-        defaultColDef={{
+-          filter: true,
+-          sortable: true,
+-          resizable: true,
+-          flex: 1,
+-          minWidth: 135,
+-        }}
+-        suppressColumnVirtualisation
+-      />
+-    </Box>
+-  );
+-};
+diff --git a/src/components/Table/index.ts b/src/components/Table/index.ts
+deleted file mode 100644
+index f8a7e00..0000000
+--- a/src/components/Table/index.ts
++++ /dev/null
+@@ -1 +0,0 @@
+-export { Table } from "./Table";
+diff --git a/src/main.tsx b/src/main.tsx
+index 3a7985a..e30d264 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -11,5 +11,5 @@ createRoot(document.getElementById("root")!).render(
+     <ThemeProvider theme={theme}>
+       <App />
+     </ThemeProvider>
+-  </React.StrictMode>
++  </React.StrictMode>,
+ );
+diff --git a/src/utils/constants.ts b/src/utils/constants.ts
+index 55110ea..2484076 100644
+--- a/src/utils/constants.ts
++++ b/src/utils/constants.ts
+@@ -1,3 +1,4 @@
+-export const Cars_API = "http://localhost:5000/api/cars";
+-export const CarDetails_API = "http://localhost:5000/api/cars/";
+-export const SearchCars_API = "http://localhost:5000/api/cars/search?brand=";
++export const GET_ALL_CARS_API = "http://localhost:5000/api/cars";
++export const GET_CAR_BY_ID_API = "http://localhost:5000/api/cars/";
++export const SEARCH_CARS_BY_BRAND_MODEL_API =
++	"http://localhost:5000/api/cars/search";
+diff --git a/src/utils/theme.ts b/src/utils/theme.ts
+index 9b271f4..83ee1d5 100644
+--- a/src/utils/theme.ts
++++ b/src/utils/theme.ts
+@@ -1,131 +1,130 @@
+ import { createTheme } from "@mui/material";
+ 
+ export const theme = createTheme({
+-  palette: {
+-    primary: {
+-      main: "#005BAC", // BMW Blue
+-    },
+-    secondary: {
+-      main: "#CCCCCC", // Light Gray
+-    },
+-    background: {
+-      default: "#F8F9FA", // Light Background
+-      paper: "#FFFFFF",
+-    },
+-    text: {
+-      primary: "#333333",
+-      secondary: "#666666",
+-    },
+-  },
+-  typography: {
+-    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+-    h1: {
+-      fontSize: "2rem",
+-      fontWeight: 600,
+-    },
+-    h2: {
+-      fontSize: "1.3rem",
+-      fontWeight: 500,
+-    },
+-    h3: {
+-      fontSize: "1.2rem",
+-      fontWeight: 500,
+-      paddingLeft: "4px",
+-    },
+-    h4: {
+-      fontSize: "0.9rem",
+-      fontWeight: 400,
+-    },
+-    body1: {
+-      fontSize: "0.8rem",
+-    },
+-  },
+-  components: {
+-    MuiPaper: {
+-      styleOverrides: {
+-        root: {
+-          boxShadow: "none !important",
+-        },
+-      },
+-    },
+-    MuiContainer: {
+-      styleOverrides: {
+-        root: {
+-          display: "flex",
+-          justifyContent: "space-between",
+-          padding: "24px",
+-          width: "95.5%",
+-          height: "100%",
+-          "@media (min-width: 1200px)": {
+-            maxWidth: "100%",
+-          },
+-        },
+-      },
+-    },
+-    MuiAppBar: {
+-      styleOverrides: {
+-        root: {
+-          display: "flex",
+-          flexDirection: "row",
+-          alignItems: "center",
+-          justifyContent: "space-between",
+-          backgroundColor: "#F0F0F0", // Light gray navbar
+-          boxShadow: "none",
+-          padding: "10px 85px 10px 60px",
+-          position: "relative",
+-          height: "65px",
+-        },
+-      },
+-    },
+-    MuiFormControl: {
+-      styleOverrides: {
+-        root: {
+-          display: "flex",
+-          flexDirection: "row",
+-        },
+-      },
+-    },
+-    MuiInput: {
+-      styleOverrides: {
+-        root: {
+-          marginLeft: "5px",
+-          fontSize: "16px",
+-          width: 400,
+-          height: 50,
+-          borderRadius: "36px",
+-          padding: "16px",
+-          backgroundColor: "white",
+-          border: "1px solid #ccc",
+-          "&:hover": {
+-            borderColor: "#999",
+-          },
+-        },
+-      },
+-    },
+-    MuiCssBaseline: {
+-      styleOverrides: {
+-        "*": {
+-          ".MuiBox-root": {
+-            backgroundColor: "white",
+-          },
+-        },
+-      },
+-    },
+-    MuiButton: {
+-      styleOverrides: {
+-        root: {
+-          textTransform: "none",
+-          borderRadius: "36px",
+-          padding: "0px",
+-          background: "white",
+-          borderColor: "#F0F0F0",
+-          marginLeft: "5px",
+-          transition: "border 0.2s ease-in-out",
+-          "&:hover": {
+-            border: "1px solid black",
+-          },
+-        },
+-      },
+-    },
+-  },
++	palette: {
++		primary: {
++			main: "#005BAC", // BMW Blue
++		},
++		secondary: {
++			main: "#CCCCCC", // Light Gray
++		},
++		background: {
++			default: "#F8F9FA", // Light Background
++			paper: "#FFFFFF",
++		},
++		text: {
++			primary: "#333333",
++			secondary: "#666666",
++		},
++	},
++	typography: {
++		fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
++		h1: {
++			fontSize: "2rem",
++			fontWeight: 600,
++		},
++		h2: {
++			fontSize: "1.3rem",
++			fontWeight: 500,
++		},
++		h3: {
++			fontSize: "1.2rem",
++			fontWeight: 500,
++			paddingLeft: "4px",
++		},
++		h4: {
++			fontSize: "0.9rem",
++			fontWeight: 400,
++		},
++		body1: {
++			fontSize: "0.8rem",
++		},
++	},
++	components: {
++		MuiPaper: {
++			styleOverrides: {
++				root: {
++					boxShadow: "none !important",
++				},
++			},
++		},
++		MuiContainer: {
++			styleOverrides: {
++				root: {
++					display: "flex",
++					justifyContent: "space-between",
++					padding: "24px",
++					width: "95.5%",
++					height: "100%",
++					"@media (min-width: 1200px)": {
++						maxWidth: "100%",
++					},
++				},
++			},
++		},
++		MuiAppBar: {
++			styleOverrides: {
++				root: {
++					display: "flex",
++					flexDirection: "row",
++					alignItems: "center",
++					justifyContent: "space-between",
++					backgroundColor: "#F0F0F0", // Light gray navbar
++					boxShadow: "none",
++					padding: "10px 85px 10px 60px",
++					position: "relative",
++				},
++			},
++		},
++		MuiFormControl: {
++			styleOverrides: {
++				root: {
++					display: "flex",
++					flexDirection: "row",
++				},
++			},
++		},
++		MuiInput: {
++			styleOverrides: {
++				root: {
++					marginLeft: "5px",
++					fontSize: "16px",
++					width: 400,
++					height: 50,
++					borderRadius: "36px",
++					padding: "16px",
++					backgroundColor: "white",
++					border: "1px solid #ccc",
++					"&:hover": {
++						borderColor: "#999",
++					},
++				},
++			},
++		},
++		MuiCssBaseline: {
++			styleOverrides: {
++				"*": {
++					".MuiBox-root": {
++						backgroundColor: "white",
++					},
++				},
++			},
++		},
++		MuiButton: {
++			styleOverrides: {
++				root: {
++					textTransform: "none",
++					borderRadius: "36px",
++					padding: "0px",
++					background: "white",
++					borderColor: "#F0F0F0",
++					marginLeft: "5px",
++					transition: "border 0.2s ease-in-out",
++					"&:hover": {
++						border: "1px solid black",
++					},
++				},
++			},
++		},
++	},
+ });
