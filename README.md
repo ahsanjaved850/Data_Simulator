@@ -48,10 +48,12 @@
    
    Libraries: AG Grid, Material-UI, React Router.
    
-   State Management: React Hooks (useState, useEffect, useCallback).
+   State Management: React Hooks (useState, useEffect).
 
    ### Backend
 
+   Used the Debounce to make the API calls process efficient.
+   
    Runtime: Node.js with Express.js.
    
    Database: MongoDB Atlas (NoSQL).
@@ -62,7 +64,31 @@
 
    Endpoint Method Description
    /api/data GET Fetch all data
-   /api/search/:brand GET Search by brand name
+   /api/search/:id GET Search by brand name
+   
+## Setup & Installation
+
+  ### Clone the Repository
+  
+      git clone https://github.com/ahsanjaved850/Data_Simulator  
+      cd data-simulator
+      
+   ### Install Dependencies
+      npm install  
+      
+   ### Configure Environment Variables
+   If you want to run the server locally. In server/config.env add the MongoDB_URL.
+      ATLAS_URI=[Your-MongoDB-URI]  
+
+   ### Run the Application(Local Server)
+   Start backend  
+   
+      cd server
+      node server.cjs  
+      
+   Start frontend  
+   
+     npm run dev  
 
 ## Architecture & Workflow
 
@@ -74,7 +100,7 @@
    
    Frontend fetches data via AG Grid from Express.js APIs.
    
-   User interactions (search, filter, delete) trigger API calls to update the UI.
+   User interactions (search ) trigger API call to update the UI.
 
    ### Git Strategy:
    
