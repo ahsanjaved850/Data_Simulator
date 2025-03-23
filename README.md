@@ -7,9 +7,6 @@
    - Technical Implementation
    - Setup & Installation
    - Architecture & Workflow
-   - Compliance with BMW Requirements
-   - Deliverables Submitted
-   - Next Steps
    - Contact
 
 ## Project Overview
