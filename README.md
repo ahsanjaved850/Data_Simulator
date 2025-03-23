@@ -92,8 +92,6 @@
      npm run dev  
 
 ## Architecture & Workflow
-
-   System Architecture Diagram Include a diagram here if available.
    
    ### Data Flow:
    
@@ -101,7 +99,7 @@
    
    Frontend fetches data via AG Grid from Express.js APIs.
    
-   User interactions (search ) trigger API call to update the UI.
+   User interactions (search ) trigger API call through debounce to update the UI and making the API call process efficient.
 
    ### Git Strategy:
    
